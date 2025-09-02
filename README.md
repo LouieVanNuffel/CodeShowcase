@@ -65,7 +65,7 @@ namespace dae
 
 ### XInputImpl.cpp
 
-XInputImpl deliberately has no header. It is private implementation detail hidden behind Controller. This makes swapping to a different system simple without having to touch higher-level gameplay code.
+XInputImpl deliberately has no header. It is a private implementation detail hidden behind Controller. This makes swapping to a different system simple without having to touch higher-level gameplay code.
 
 <details>
 <summary>Implementation</summary>
@@ -326,7 +326,7 @@ private:
 
 ## Implementation of observer pattern
 
-The observer pattern is very useful where you don't need constant polling to happen. When something happens the subject notifies all of its observers that an event happens. The observers can then execute whatever needs to happen. Events are identified with string hashes at compile time, this way you can add new events without having to modify an enum for example. This system is loosely coupled. UI, sound, animation systems, etc. can all listen to the same events, while gameplay logic remains unaware of their existence.
+The observer pattern is very useful where you don't need constant polling to happen. When something happens the subject notifies all of its observers that an event happened. The observers can then execute whatever needs to happen. Events are identified with string hashes at compile time, this way you can add new events without having to modify an enum for example. This system is loosely coupled. UI, sound, animation systems, etc. can all listen to the same events, while gameplay logic remains unaware of their existence.
 
 ### Observer.h
 
@@ -596,7 +596,7 @@ std::unique_ptr<SoundSystem> ServiceLocator::_ss_instance = std::make_unique<Nul
 
 ### QueuedSoundSystem.h
 
-The queued sound system uses threading to keep the game's framerate from dropping when playing a sound by keeping the playing of sound out of the hot codepath. The cpp file included holds the private implementation that can be swapped out easily, it is intentionally held in a cpp file to hide the specifics.
+The queued sound system uses threading to keep the game's framerate from dropping when playing a sound by keeping the playing of sounds out of the hot codepath. The cpp file included holds the private implementation that can be swapped out easily, it is intentionally held in a cpp file to hide the specifics.
 
 ``` C++
 #pragma once
